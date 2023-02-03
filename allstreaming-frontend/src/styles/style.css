@@ -1,0 +1,23 @@
+.current-page{
+    background: white ;
+    background-color: white;
+    color: black;
+    
+}
+
+.not-current{
+    background-color: black;
+    background: black ;
+    color: white;
+    
+}
+
+.buttons:hover {
+    background-color: #ffc107 ;
+    color: white ;
+}
+
+.disabled-button{
+    background: #5a6161 !important;
+     color: white !important;
+}
