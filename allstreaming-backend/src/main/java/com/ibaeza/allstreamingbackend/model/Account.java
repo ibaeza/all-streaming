@@ -1,6 +1,7 @@
 package com.ibaeza.allstreamingbackend.model;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity
 public class Account {

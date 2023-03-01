@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "422c26f6-0bbc-41ec-9972-6d96c19132a6",
+		"_postman_id": "fbcad4b5-8f56-4d06-a2b1-60962c27ccfe",
 		"name": "Web API All Streaming",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "18028888"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -237,6 +236,94 @@
 						"getAvailable",
 						"service",
 						"{service}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Types Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/type/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"type",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all metrics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/metrics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"metrics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Requests metrics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/metrics/http.server.requests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"metrics",
+						"http.server.requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Requests metrics for specific endpoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/metrics/http.server.requests?tag=status:200",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"metrics",
+						"http.server.requests"
+					],
+					"query": [
+						{
+							"key": "tag",
+							"value": "status:200"
+						}
 					]
 				}
 			},
