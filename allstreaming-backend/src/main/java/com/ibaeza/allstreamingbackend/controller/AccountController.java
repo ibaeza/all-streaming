@@ -4,6 +4,8 @@ import com.ibaeza.allstreamingbackend.exception.AccountNotFoundException;
 import com.ibaeza.allstreamingbackend.model.Account;
 import com.ibaeza.allstreamingbackend.model.response.availableAccountResponse;
 import com.ibaeza.allstreamingbackend.service.AccountService;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,11 +26,19 @@ public class AccountController {
     }
 
     @GetMapping("/getAll")
+    @Timed(value = "getAll.time", description = "Time taken to get all accounts")
+    @Counted(value = "getAll.counter", description = "Number of times getAll is called")
     public List<Account> getAll(){
-        return accountService.getAllAccounts();
+        long startTime = System.currentTimeMillis();
+        List<Account> accounts = accountService.getAllAccounts();
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time taken to get all accounts: {} ms" + (endTime - startTime));
+        return accounts;
     }
 
     @GetMapping("/get/{id}")
+    @Timed(value = "getById.time", description = "Time taken to get account by id")
+    @Counted(value = "getById.counter", description = "Number of times getById is called")
     public Account getById(@PathVariable int id){
         return accountService.getAccountById(id);
     }
