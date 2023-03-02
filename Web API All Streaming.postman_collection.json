@@ -328,6 +328,68 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Repository Metrics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/metrics/spring.data.repository.invocations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"metrics",
+						"spring.data.repository.invocations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get String / Web Client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/account/string",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"string"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Metrics for WebClient Endpoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/metrics/getString.time",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"metrics",
+						"getString.time"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

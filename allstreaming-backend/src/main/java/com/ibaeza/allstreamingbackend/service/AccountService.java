@@ -2,6 +2,7 @@ package com.ibaeza.allstreamingbackend.service;
 
 import com.ibaeza.allstreamingbackend.model.Account;
 import com.ibaeza.allstreamingbackend.model.response.availableAccountResponse;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface AccountService {
     public List<availableAccountResponse> getAvailableAccountsByTypeId(int id_type);
     public List<availableAccountResponse> getAvailableAccountsByService(String service);
     public Account editAccountStatusById(int id, String status);
+    public Mono<String> getPostTitle();
 }

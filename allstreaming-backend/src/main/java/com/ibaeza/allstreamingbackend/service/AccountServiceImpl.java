@@ -4,13 +4,17 @@ import com.ibaeza.allstreamingbackend.model.Account;
 import com.ibaeza.allstreamingbackend.model.response.availableAccountResponse;
 import com.ibaeza.allstreamingbackend.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import com.ibaeza.allstreamingbackend.exception.AccountNotFoundException;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.*;
 
 @Service
 public class AccountServiceImpl implements AccountService{
+
 
     @Autowired
     private AccountRepository accountRepository;
@@ -87,6 +91,16 @@ public class AccountServiceImpl implements AccountService{
                     account.setStatus(newStatus);
                     return accountRepository.saveAndFlush(account);
                 }).orElseThrow(()->new AccountNotFoundException(id));
+    }
+
+    @Override
+    public Mono<String> getPostTitle() {
+        return WebClient.create().get()
+                .uri("https://jsonplaceholder.typicode.com/todos/1")
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {})
+                .map(response -> (String) response.get("title"))
+                .onErrorResume(error -> Mono.just("Ocurrió un error al obtener el título del post: " + error.getMessage()));
     }
 
 }

@@ -7,7 +7,10 @@ import com.ibaeza.allstreamingbackend.service.AccountService;
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -72,5 +75,12 @@ public class AccountController {
         accountService.deleteAccountById(id);
 
         return "Account with id "+id+" has been deleted success.";
+    }
+
+    @GetMapping(value = "/string", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @Timed(value = "getString.time", description = "Time taken to get string through Web Client")
+    @Counted(value = "getString.counted", description = "Number of times getString is called using Web Client")
+    public Mono<String> getString() {
+        return accountService.getPostTitle();
     }
 }
